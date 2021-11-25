@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="11"/>
+    <BuildModes Active="Release"/>
+    <Units Count="19">
+      <Unit0>
+        <Filename Value="Resistal.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos Y="25"/>
+        <UsageCount Value="216"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="frm_main.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="378"/>
+        <CursorPos Y="393"/>
+        <UsageCount Value="216"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="frm_about.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmAbout"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="2"/>
+        <UsageCount Value="216"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="frm_contact.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmContact"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="56"/>
+        <CursorPos X="64" Y="80"/>
+        <UsageCount Value="216"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="frm_help.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmHelp"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="216"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="sha256.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="48"/>
+        <CursorPos X="13" Y="9"/>
+        <UsageCount Value="216"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="internet.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="21"/>
+        <CursorPos Y="13"/>
+        <UsageCount Value="216"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="projectfilesmanager.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ProjectFilesManager"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="287"/>
+        <CursorPos Y="217"/>
+        <UsageCount Value="216"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="readfileinfo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="readFileInfo"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="20"/>
+        <UsageCount Value="216"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="tor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="508"/>
+        <CursorPos Y="483"/>
+        <UsageCount Value="216"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="uniqueinstancebase.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UniqueInstanceBase"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="36"/>
+        <UsageCount Value="216"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="uniqueinstanceraw.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UniqueInstanceRaw"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="25"/>
+        <UsageCount Value="216"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="useroutingtable.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="useRoutingTable"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="65"/>
+        <UsageCount Value="216"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="telnetsshclient.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="307"/>
+        <CursorPos Y="11"/>
+        <UsageCount Value="134"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="telnet_client.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="34"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="telnet.pas"/>
+        <UnitName Value="telnet_client"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="26" Y="11"/>
+        <UsageCount Value="20"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="jsontools.pas"/>
+        <UnitName Value="JsonTools"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="464"/>
+        <CursorPos X="27" Y="115"/>
+        <FoldState Value=" T3mM0{?331u"/>
+        <UsageCount Value="17"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\fcl-registry\src\regdef.inc"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="3" Y="25"/>
+        <UsageCount Value="3"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\chm\src\chmreader.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="19"/>
+        <CursorPos X="38" Y="33"/>
+        <UsageCount Value="8"/>
+      </Unit18>
+    </Units>
+    <JumpHistory Count="23" HistoryIndex="22">
+      <Position1>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="251" Column="89" TopLine="227"/>
+      </Position1>
+      <Position2>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="636" Column="17" TopLine="628"/>
+      </Position2>
+      <Position3>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="643" Column="17" TopLine="630"/>
+      </Position3>
+      <Position4>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="670" Column="96" TopLine="655"/>
+      </Position4>
+      <Position5>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="44" Column="3" TopLine="29"/>
+      </Position5>
+      <Position6>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="218" Column="12" TopLine="203"/>
+      </Position6>
+      <Position7>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="226" Column="33" TopLine="212"/>
+      </Position7>
+      <Position8>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="445" Column="7" TopLine="428"/>
+      </Position8>
+      <Position9>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="607" Column="7" TopLine="593"/>
+      </Position9>
+      <Position10>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="643" Column="13" TopLine="628"/>
+      </Position10>
+      <Position11>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="431" Column="9" TopLine="408"/>
+      </Position11>
+      <Position12>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="461" Column="5" TopLine="444"/>
+      </Position12>
+      <Position13>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="484" Column="7" TopLine="461"/>
+      </Position13>
+      <Position14>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="478" Column="17" TopLine="461"/>
+      </Position14>
+      <Position15>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="1026" Column="105" TopLine="1007"/>
+      </Position15>
+      <Position16>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="294" Column="52" TopLine="280"/>
+      </Position16>
+      <Position17>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="293" Column="39" TopLine="278"/>
+      </Position17>
+      <Position18>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="296" Column="63" TopLine="278"/>
+      </Position18>
+      <Position19>
+        <Filename Value="Resistal.lpr"/>
+        <Caret Line="32" Column="36" TopLine="11"/>
+      </Position19>
+      <Position20>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="822" Column="7" TopLine="808"/>
+      </Position20>
+      <Position21>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="159" Column="37" TopLine="144"/>
+      </Position21>
+      <Position22>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="390" Column="5" TopLine="376"/>
+      </Position22>
+      <Position23>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="1470" TopLine="1455"/>
+      </Position23>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
