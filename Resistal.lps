@@ -20,8 +20,8 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="378"/>
-        <CursorPos Y="393"/>
+        <TopLine Value="455"/>
+        <CursorPos Y="468"/>
         <UsageCount Value="216"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -67,19 +67,21 @@
       <Unit6>
         <Filename Value="internet.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="21"/>
-        <CursorPos Y="13"/>
+        <CursorPos Y="45"/>
         <UsageCount Value="216"/>
+        <Loaded Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="projectfilesmanager.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ProjectFilesManager"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="287"/>
-        <CursorPos Y="217"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="40"/>
+        <CursorPos X="2" Y="65"/>
         <UsageCount Value="216"/>
+        <Loaded Value="True"/>
       </Unit7>
       <Unit8>
         <Filename Value="readfileinfo.pas"/>
@@ -92,15 +94,15 @@
       <Unit9>
         <Filename Value="tor.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="508"/>
-        <CursorPos Y="483"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="37"/>
+        <CursorPos Y="519"/>
         <UsageCount Value="216"/>
+        <Loaded Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="uniqueinstancebase.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UniqueInstanceBase"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="36"/>
         <UsageCount Value="216"/>
@@ -108,7 +110,6 @@
       <Unit11>
         <Filename Value="uniqueinstanceraw.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UniqueInstanceRaw"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
         <UsageCount Value="216"/>
@@ -116,7 +117,6 @@
       <Unit12>
         <Filename Value="useroutingtable.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="useRoutingTable"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="65"/>
         <UsageCount Value="216"/>
@@ -127,7 +127,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="307"/>
         <CursorPos Y="11"/>
-        <UsageCount Value="134"/>
+        <UsageCount Value="152"/>
       </Unit13>
       <Unit14>
         <Filename Value="telnet_client.pas"/>
@@ -135,14 +135,14 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="32"/>
       </Unit14>
       <Unit15>
         <Filename Value="telnet.pas"/>
         <UnitName Value="telnet_client"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="26" Y="11"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="18"/>
       </Unit15>
       <Unit16>
         <Filename Value="jsontools.pas"/>
@@ -151,23 +151,23 @@
         <TopLine Value="464"/>
         <CursorPos X="27" Y="115"/>
         <FoldState Value=" T3mM0{?331u"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="15"/>
       </Unit16>
       <Unit17>
         <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\fcl-registry\src\regdef.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="25"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="1"/>
       </Unit17>
       <Unit18>
         <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\chm\src\chmreader.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="19"/>
         <CursorPos X="38" Y="33"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit18>
     </Units>
-    <JumpHistory Count="23" HistoryIndex="22">
+    <JumpHistory Count="25" HistoryIndex="24">
       <Position1>
         <Filename Value="frm_main.pas"/>
         <Caret Line="251" Column="89" TopLine="227"/>
@@ -260,6 +260,14 @@
         <Filename Value="frm_main.pas"/>
         <Caret Line="1470" TopLine="1455"/>
       </Position23>
+      <Position24>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="589" Column="13" TopLine="548"/>
+      </Position24>
+      <Position25>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="463" Column="6" TopLine="444"/>
+      </Position25>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
