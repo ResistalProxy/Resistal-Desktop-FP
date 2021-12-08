@@ -465,7 +465,6 @@ procedure TThreadCheckUpdate.UpdateApplication;
 var
   version: string = '';
   AppHash: string = '';
-  MS: TMemoryStream;
   UnZipper: TUnZipper;
 begin
   // read version.info
@@ -485,58 +484,44 @@ begin
     try
       if version <> readFileInfo.getAppVersion then
       begin
-        Sleep(1000);
-        FrmMain.StatusBarMain.Panels[1].Text := 'New version available.';
-
-        Sleep(1000);
-        FrmMain.StatusBarMain.Panels[1].Text := 'Downloading...';
-        Sleep(500);
-
-        // read sha256
-        try
-          DownloadUrl :=
-            'https://resistalproxy.github.io/resistal/resistal.sha256';
-          AppHash := FrmMain.IdHttpCheckUpdate.Get(DownloadUrl);
-        except
-          FrmMain.StatusBarMain.Panels[1].Text := 'Error in Update Application.';
-          Sleep(1000);
-        end;
-
-        if not AppHash.IsEmpty then
+        if (WindowsVersion = wv95) or (WindowsVersion = wvNT4) or
+          (WindowsVersion = wv98) or (WindowsVersion = wvMe) or
+          (WindowsVersion = wv2000) or (WindowsVersion = wvServer2003) or
+          (WindowsVersion = wvXP) then
         begin
-          // download
-          ProjectFilesManager.DeleteDownload;
-          ProjectFilesManager.DeleteBackup;
+          Sleep(1000);
+          FrmMain.StatusBarMain.Panels[1].Text := 'You have the latest version.';
+          IsUpdateApplication := True;
+        end
+        else
+        begin
+          Sleep(1000);
+          FrmMain.StatusBarMain.Panels[1].Text := 'New version available.';
 
+          Sleep(1000);
+          FrmMain.StatusBarMain.Panels[1].Text := 'Downloading...';
+          Sleep(500);
+
+          // read sha256
           try
             DownloadUrl :=
-              'https://resistalproxy.github.io/resistal/ResistalProxy.zip';
+              'https://resistalproxy.github.io/resistal/resistal.sha256';
+            AppHash := FrmMain.IdHttpCheckUpdate.Get(DownloadUrl);
+          except
+            FrmMain.StatusBarMain.Panels[1].Text := 'Error in Update Application.';
+            Sleep(1000);
+          end;
 
-            if (WindowsVersion = wv95) or (WindowsVersion = wvNT4) or
-              (WindowsVersion = wv98) or (WindowsVersion = wvMe) or
-              (WindowsVersion = wv2000) or (WindowsVersion = wvServer2003) or
-              (WindowsVersion = wvXP) then
-            begin
-              // Download the file
-              // Save the memorystream to disk
-              MS := TMemoryStream.Create;
-              FrmMain.IdHttpCheckUpdate.Get(DownloadUrl, MS);
-              if not DirectoryExists(AppPath + 'Download') then
-              begin
-                if CreateDir(AppPath + 'Download') then
-                  MS.SaveToFile(AppPath + 'Download\ResistalProxy.zip')
-                else
-                  FrmMain.StatusBarMain.Panels[1].Text :=
-                    'Failed to create Download directory!';
-              end
-              else
-                MS.SaveToFile(AppPath + 'Download\ResistalProxy.zip');
+          if not AppHash.IsEmpty then
+          begin
+            // download
+            ProjectFilesManager.DeleteDownload;
+            ProjectFilesManager.DeleteBackup;
 
-              // Free the memorystream
-              MS.Free;
-            end
-            else
-            begin
+            try
+              DownloadUrl :=
+                'https://resistalproxy.github.io/resistal/ResistalProxy.zip';
+
               // download with aria2c
               if not DirectoryExists(AppPath + 'Download') then
               begin
@@ -548,57 +533,57 @@ begin
               end
               else
                 Aria2cDownload(AppPath + 'Download', DownloadUrl);
-            end;
-          finally
-            // check exist file
-            if FileExists(AppPath + 'Download\ResistalProxy.zip') then
-            begin
-              Sleep(1000);
-              // check hash
-              if AppHash = sha256.getsha256_file(AppPath +
-                'Download\ResistalProxy.zip') then
+            finally
+              // check exist file
+              if FileExists(AppPath + 'Download\ResistalProxy.zip') then
               begin
-                FrmMain.StatusBarMain.Panels[1].Text := 'Download Completed.';
+                Sleep(1000);
+                // check hash
+                if AppHash = sha256.getsha256_file(AppPath +
+                  'Download\ResistalProxy.zip') then
+                begin
+                  FrmMain.StatusBarMain.Panels[1].Text := 'Download Completed.';
 
-                // extract
-                try
-                  UnZipper := TUnZipper.Create;
+                  // extract
                   try
-                    UnZipper.FileName := AppPath + 'Download\ResistalProxy.zip';
-                    UnZipper.OutputPath := AppPath + 'Download\';
-                    UnZipper.Examine;
-                    UnZipper.UnZipAllFiles;
-                  finally
-                    UnZipper.Free;
+                    UnZipper := TUnZipper.Create;
+                    try
+                      UnZipper.FileName := AppPath + 'Download\ResistalProxy.zip';
+                      UnZipper.OutputPath := AppPath + 'Download\';
+                      UnZipper.Examine;
+                      UnZipper.UnZipAllFiles;
+                    finally
+                      UnZipper.Free;
+                    end;
+
+                    SysUtils.DeleteFile(AppPath + 'Download\ResistalProxy.zip');
+
+                    // install
+                    if ProjectFilesManager.UpdateResistal then
+                    begin
+                      Sleep(500);
+                      FrmMain.StatusBarMain.Panels[1].Text := 'Update Completed.';
+
+                      // restart
+                      Sleep(1000);
+                      FrmMain.StatusBarMain.Panels[1].Text :=
+                        'Restart App to Complete Update.';
+                      IsUpdateApplication := True;
+                    end;
+                  except
+                    on E: Exception do
+                      FrmMain.StatusBarMain.Panels[1].Text := E.Message;
                   end;
 
-                  SysUtils.DeleteFile(AppPath + 'Download\ResistalProxy.zip');
-
-                  // install
-                  if ProjectFilesManager.UpdateResistal then
-                  begin
-                    Sleep(500);
-                    FrmMain.StatusBarMain.Panels[1].Text := 'Update Completed.';
-
-                    // restart
-                    Sleep(1000);
-                    FrmMain.StatusBarMain.Panels[1].Text :=
-                      'Restart App to Complete Update.';
-                    IsUpdateApplication := True;
-                  end;
-                except
-                  on E: Exception do
-                    FrmMain.StatusBarMain.Panels[1].Text := E.Message;
+                end
+                else
+                begin
+                  FrmMain.StatusBarMain.Panels[1].Text := 'Downloading with Error.';
                 end;
-
               end
               else
-              begin
-                FrmMain.StatusBarMain.Panels[1].Text := 'Downloading with Error.';
-              end;
-            end
-            else
-              FrmMain.StatusBarMain.Panels[1].Text := 'Download NOT Complete.';
+                FrmMain.StatusBarMain.Panels[1].Text := 'Download NOT Complete.';
+            end;
           end;
         end;
       end
