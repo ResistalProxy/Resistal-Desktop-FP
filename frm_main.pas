@@ -399,7 +399,7 @@ begin
 
   try
     DownloadUrl :=
-      'https://raw.githubusercontent.com/ResistalProxy/resistal/master/bridge.txt';
+      'https://resistalproxy.github.io/resistal/bridge.txt';
     bridge := FrmMain.IdHttpCheckUpdate.Get(DownloadUrl);
   except
     FrmMain.StatusBarMain.Panels[1].Text := 'Error in Update Bridges.';
@@ -473,7 +473,7 @@ begin
 
   try
     DownloadUrl :=
-      'https://raw.githubusercontent.com/ResistalProxy/resistal/master/version.info';
+      'https://resistalproxy.github.io/resistal/version.info';
     version := FrmMain.IdHttpCheckUpdate.Get(DownloadUrl);
   except
     FrmMain.StatusBarMain.Panels[1].Text := 'Error in Update Application.';
@@ -495,7 +495,7 @@ begin
         // read sha256
         try
           DownloadUrl :=
-            'https://raw.githubusercontent.com/ResistalProxy/resistal/master/resistal.sha256';
+            'https://resistalproxy.github.io/resistal/resistal.sha256';
           AppHash := FrmMain.IdHttpCheckUpdate.Get(DownloadUrl);
         except
           FrmMain.StatusBarMain.Panels[1].Text := 'Error in Update Application.';
@@ -508,10 +508,9 @@ begin
           ProjectFilesManager.DeleteDownload;
           ProjectFilesManager.DeleteBackup;
 
-          // open FrmUpdate and download new version of app
           try
             DownloadUrl :=
-              'https://raw.githubusercontent.com/ResistalProxy/resistal/master/ResistalProxy.zip';
+              'https://resistalproxy.github.io/resistal/ResistalProxy.zip';
 
             if (WindowsVersion = wv95) or (WindowsVersion = wvNT4) or
               (WindowsVersion = wv98) or (WindowsVersion = wvMe) or
