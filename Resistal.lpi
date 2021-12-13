@@ -18,8 +18,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="1"/>
-      <MinorVersionNr Value="1"/>
-      <RevisionNr Value="4"/>
+      <MinorVersionNr Value="2"/>
+      <BuildNr Value="2"/>
       <StringTable ProductName="Resistal"/>
     </VersionInfo>
     <BuildModes Count="2">
