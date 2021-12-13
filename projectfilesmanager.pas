@@ -43,7 +43,7 @@ const
     'Tor\Tor\libevent_core-2-1-7.dll',
     'Tor\Tor\libevent_extra-2-1-7.dll',
     'Tor\Tor\libevent-2-1-7.dll',
-    'Tor\Tor\libgcc_s_sjlj-1.dll',
+    'Tor\Tor\libgcc_s_dw2-1.dll',
     'Tor\Tor\libssl-1_1.dll',
     'Tor\Tor\libssp-0.dll',
     'Tor\Tor\libwinpthread-1.dll',
@@ -61,7 +61,7 @@ const
   Aria2cPath: string = 'Bin\aria2c.exe';
   toralPath: string = 'Tor\Data\Tor\toral';
   toravPath: string = 'Tor\Data\Tor\torav';
-  TorVersion: string = '0.4.4.6';
+  TorVersion: string = '0.4.6.8';
 
 var
   AppPath: string;
