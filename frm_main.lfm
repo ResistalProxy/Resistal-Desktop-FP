@@ -2347,7 +2347,7 @@ object FrmMain: TFrmMain
         Width = 75
         ReadOnly = True
         TabOrder = 7
-        Text = '3.0.28'
+        Text = '3.0.32'
       end
     end
     object StatusBarMain: TStatusBar
