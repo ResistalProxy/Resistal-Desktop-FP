@@ -842,6 +842,21 @@ begin
             FrmMain.LblStatus.Caption := 'Opened Socks listener';
           end;
 
+          if AnsiContainsStr(StrArray[index], 'Parsing GEOIP IPv4 file') then
+          begin
+            FrmMain.LblStatus.Caption := 'Parsing GEOIP IPv4 file';
+          end;
+
+          if AnsiContainsStr(StrArray[index], 'Parsing GEOIP IPv6 file') then
+          begin
+            FrmMain.LblStatus.Caption := 'Parsing GEOIP IPv6 file';
+          end;
+
+          if AnsiContainsStr(StrArray[index], 'Starting with guard context') then
+          begin
+            FrmMain.LblStatus.Caption := 'Starting with guard context "bridges"';
+          end;
+
           if AnsiContainsStr(StrArray[index], 'Bootstrapped') then
           begin
             posStrArray := Pos('Bootstrapped', StrArray[index]);
