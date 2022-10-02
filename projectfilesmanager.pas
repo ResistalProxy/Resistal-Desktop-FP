@@ -20,7 +20,7 @@ const
     'Tor\Tor\PluggableTransports'
     );
 
-  Files: array[1..24] of string =
+  Files: array[1..20] of string =
     (
     'Resistal.exe',
     'libeay32.dll',
@@ -29,16 +29,12 @@ const
     'Bin\aria2c.exe',
 
     'Privoxy\config.txt',
-    'Privoxy\default.action',
-    'Privoxy\default.filter',
-    'Privoxy\match-all.action',
     'Privoxy\privoxy.exe',
-    'Privoxy\user.action',
-    'Privoxy\user.filter',
 
     'Tor\Data\Tor\geoip',
     'Tor\Data\Tor\geoip6',
     'Tor\Tor\PluggableTransports\obfs4proxy.exe',
+    'Tor\Tor\PluggableTransports\snowflake-client.exe',
     'Tor\Tor\libcrypto-1_1.dll',
     'Tor\Tor\libevent_core-2-1-7.dll',
     'Tor\Tor\libevent_extra-2-1-7.dll',
@@ -61,7 +57,7 @@ const
   Aria2cPath: string = 'Bin\aria2c.exe';
   toralPath: string = 'Tor\Data\Tor\toral';
   toravPath: string = 'Tor\Data\Tor\torav';
-  TorVersion: string = '0.4.6.8';
+  TorVersion: string = '0.4.7.10';
 
 var
   AppPath: string;
@@ -222,7 +218,7 @@ begin
   DeleteBackupFile(AppPath + 'Tor\Tor\libevent_core-2-1-7.dll.bak');
   DeleteBackupFile(AppPath + 'Tor\Tor\libevent_extra-2-1-7.dll.bak');
   DeleteBackupFile(AppPath + 'Tor\Tor\libevent-2-1-7.dll.bak');
-  DeleteBackupFile(AppPath + 'Tor\Tor\libgcc_s_sjlj-1.dll.bak');
+  DeleteBackupFile(AppPath + 'Tor\Tor\libgcc_s_dw2-1.dll.bak');
   DeleteBackupFile(AppPath + 'Tor\Tor\libssl-1_1.dll.bak');
   DeleteBackupFile(AppPath + 'Tor\Tor\libssp-0.dll.bak');
   DeleteBackupFile(AppPath + 'Tor\Tor\libwinpthread-1.dll.bak');
