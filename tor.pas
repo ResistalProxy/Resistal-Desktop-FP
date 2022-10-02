@@ -59,6 +59,7 @@ var
   haveCfg6: boolean = False;
   haveCfg7: boolean = False;
   haveCfg8: boolean = False;
+  haveCfg9: boolean = False;
   haveBridge: boolean = False;
 begin
   torrcPath := AppPath + ProjectFilesManager.torrcPath;
@@ -143,7 +144,8 @@ begin
       begin
         if slTorrc[i].StartsWith('GeoIPv6File') then
         begin
-          slTorrc[i] := 'GeoIPv6File ' + AppPath + ProjectFilesManager.DataPath + '\geoip6';
+          slTorrc[i] := 'GeoIPv6File ' + AppPath +
+            ProjectFilesManager.DataPath + '\geoip6';
           haveCfg6 := True;
           Break;
         end;
@@ -168,12 +170,42 @@ begin
       begin
         if slTorrc[i].StartsWith('ClientTransportPlugin') then
         begin
-          haveCfg8 := True;
-          Break;
+          if AnsiContainsStr(slTorrc[i], 'meek_lite') then
+          begin
+            slTorrc[i] :=
+              'ClientTransportPlugin meek_lite,obfs2,obfs3,obfs4,scramblesuit exec PluggableTransports\obfs4proxy.exe';
+
+            haveCfg8 := True;
+            Break;
+          end;
         end;
       end;
       if not haveCfg8 then
-        slTorrc.Add('ClientTransportPlugin obfs4 exec PluggableTransports\obfs4proxy.exe');
+      begin
+        slTorrc.Add(
+          'ClientTransportPlugin meek_lite,obfs2,obfs3,obfs4,scramblesuit exec PluggableTransports\obfs4proxy.exe');
+      end;
+
+      // ClientTransportPlugin
+      for i := 0 to slTorrc.Count - 1 do
+      begin
+        if slTorrc[i].StartsWith('ClientTransportPlugin') then
+        begin
+          if AnsiContainsStr(slTorrc[i], 'snowflake') then
+          begin
+            slTorrc[i] :=
+              'ClientTransportPlugin snowflake exec PluggableTransports\snowflake-client.exe -url https://snowflake-broker.torproject.net.global.prod.fastly.net/ -front cdn.sstatic.net -ice stun:stun.l.google.com:19302,stun:stun.voip.blackberry.com:3478,stun:stun.altar.com.pl:3478,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.sonetel.net:3478,stun:stun.stunprotocol.org:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478';
+
+            haveCfg9 := True;
+            Break;
+          end;
+        end;
+      end;
+      if not haveCfg9 then
+      begin
+        slTorrc.Add(
+          'ClientTransportPlugin snowflake exec PluggableTransports\snowflake-client.exe -url https://snowflake-broker.torproject.net.global.prod.fastly.net/ -front cdn.sstatic.net -ice stun:stun.l.google.com:19302,stun:stun.voip.blackberry.com:3478,stun:stun.altar.com.pl:3478,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.sonetel.net:3478,stun:stun.stunprotocol.org:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478');
+      end;
 
       // have any bridge in torrc?
       for i := 0 to slTorrc.Count - 1 do
@@ -236,17 +268,23 @@ begin
       WriteLn(torrcFile, 'SocksPort 9050');
       WriteLn(torrcFile, '');
       WriteLn(torrcFile, 'DataDirectory ' + AppPath + ProjectFilesManager.DataPath);
-      WriteLn(torrcFile, 'GeoIPFile ' + AppPath + ProjectFilesManager.DataPath + '\geoip');
-      WriteLn(torrcFile, 'GeoIPv6File ' + AppPath + ProjectFilesManager.DataPath + '\geoip6');
+      WriteLn(torrcFile, 'GeoIPFile ' + AppPath +
+        ProjectFilesManager.DataPath + '\geoip');
+      WriteLn(torrcFile, 'GeoIPv6File ' + AppPath + ProjectFilesManager.DataPath +
+        '\geoip6');
       WriteLn(torrcFile, '');
       WriteLn(torrcFile, 'UseBridges 1');
 
       {$IFDEF Windows}
-      WriteLn(torrcFile, 'ClientTransportPlugin obfs4 exec PluggableTransports\obfs4proxy.exe');
+      WriteLn(torrcFile,
+        'ClientTransportPlugin meek_lite,obfs2,obfs3,obfs4,scramblesuit exec PluggableTransports\obfs4proxy.exe');
+      WriteLn(torrcFile,
+        'ClientTransportPlugin snowflake exec PluggableTransports\snowflake-client.exe -url https://snowflake-broker.torproject.net.global.prod.fastly.net/ -front cdn.sstatic.net -ice stun:stun.l.google.com:19302,stun:stun.voip.blackberry.com:3478,stun:stun.altar.com.pl:3478,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.sonetel.net:3478,stun:stun.stunprotocol.org:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478');
       {$ENDIF}
 
       {$IFDEF UNIX}
-      WriteLn(torrcFile, 'ClientTransportPlugin obfs4 exec PluggableTransports/obfs4proxy');
+      WriteLn(torrcFile,
+        'ClientTransportPlugin meek_lite,obfs2,obfs3,obfs4,scramblesuit exec PluggableTransports/obfs4proxy');
       {$ENDIF}
 
       WriteLn(torrcFile, '');
@@ -438,7 +476,8 @@ begin
       slTorrc.LoadFromFile(torrcPath);
       for i := 0 to slTorrc.Count - 1 do
       begin
-        if slTorrc[i].StartsWith('Bridge obfs4') and AnsiContainsStr(slTorrc[i], Bridge) then
+        if slTorrc[i].StartsWith('Bridge obfs4') and
+          AnsiContainsStr(slTorrc[i], Bridge) then
         begin
           slTorrc.Delete(i);
           Break;
