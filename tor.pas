@@ -8,43 +8,47 @@ uses
   Classes, SysUtils, Forms, Dialogs, LCLProc, strutils, RegExpr, ProjectFilesManager;
 
 const
-  Bridges: array[1..19] of string =
+  Obfs4Bridges: array[1..13] of string =
     (
-    'Bridge obfs4 209.148.46.65:443 74FAD13168806246602538555B5521A0383A1875 cert=ssH+9rP8dG2NLDN2XuFw63hIO/9MNNinLmxQDpVa+7kTOa9/m+tGWT1SmSYpQ9uTBGa6Hw iat-mode=0',
-    'Bridge obfs4 146.57.248.225:22 10A6CD36A537FCE513A322361547444B393989F0 cert=K1gDtDAIcUfeLqbstggjIw2rtgIKqdIhUlHp82XRqNSq/mtAjp1BIC9vHKJ2FAEpGssTPw iat-mode=0',
-    'Bridge obfs4 45.145.95.6:27015 C5B7CD6946FF10C5B3E89691A7D3F2C122D2117C cert=TD7PbUO0/0k6xYHMPW3vJxICfkMZNdkRrb63Zhl5j9dW3iRGiCx0A7mPhe5T2EDzQ35+Zw iat-mode=0',
-    'Bridge obfs4 194.36.189.10:43605 066B6A884D876796DDBD6DB9281B1B679A908DED cert=JZMXIxb5pLZlweeSAHIz+7lcFjMOjATmEQN5K5EwCCdJAxo8I8yQWxPDTFKvEgzcgVHXEg iat-mode=0',
-    'Bridge obfs4 103.1.186.131:1756 2DF3D567AA50475783746231E76C24B0737B3D42 cert=octM7TQrkVKZ5IcCiynW0DjMDoUcYsmbx/EL4wSRK8YoCRRN4y3vLncJxLo9axJAfTyNDQ iat-mode=0',
-    'Bridge obfs4 185.106.120.19:443 13CD52C858501590934430D8C3BA2ABBD3A4384E cert=khcigTI9D5qHsixyLyazD1xFA1wcpbKK2UtTlKjaQiMJU1ghWcw8hRQ/rbf4f2VmnhG7Xw iat-mode=0',
-    'Bridge obfs4 176.126.245.115:443 C45827044395F1B3C2D60A3F2F54DF66E84DDA3A cert=FwRGScnGOXr0RfQ0/6pBOUuze39bFF6Wy99g0pb5BC8MdGZBytaqoRVIFCFZM0DjElJzKw iat-mode=0',
-    'Bridge obfs4 192.95.36.142:443 CDF2E852BF539B82BD10E27E9115A31734E378C2 cert=qUVQ0srL1JI/vO6V6m/24anYXiJD3QP2HgzUKQtQ7GRqqUvs7P+tG43RtAqdhLOALP7DJQ iat-mode=1',
-    'Bridge obfs4 38.229.1.78:80 C8CBDB2464FC9804A69531437BCF2BE31FDD2EE4 cert=Hmyfd2ev46gGY7NoVxA9ngrPF2zCZtzskRTzoWXbxNkzeVnGFPWmrTtILRyqCTjHR+s9dg iat-mode=1',
-    'Bridge obfs4 38.229.33.83:80 0BAC39417268B96B9F514E7F63FA6FBA1A788955 cert=VwEFpk9F/UN9JED7XpG1XOjm/O8ZCXK80oPecgWnNDZDv5pdkhq1OpbAH0wNqOT6H6BmRQ iat-mode=1',
-    'Bridge obfs4 37.218.240.34:40035 88CD36D45A35271963EF82E511C8827A24730913 cert=eGXYfWODcgqIdPJ+rRupg4GGvVGfh25FWaIXZkit206OSngsp7GAIiGIXOJJROMxEqFKJg iat-mode=1',
-    'Bridge obfs4 37.218.245.14:38224 D9A82D2F9C2F65A18407B1D2B764F130847F8B5D cert=bjRaMrr1BRiAW8IE9U5z27fQaYgOhX1UCmOpg2pFpoMvo6ZgQMzLsaTzzQNTlm7hNcb+Sg iat-mode=0',
     'Bridge obfs4 85.31.186.98:443 011F2599C0E9B27EE74B353155E244813763C3E5 cert=ayq0XzCwhpdysn5o0EyDUbmSOx3X/oTEbzDMvczHOdBJKlvIdHHLJGkZARtT4dcBFArPPg iat-mode=0',
-    'Bridge obfs4 85.31.186.26:443 91A6354697E6B02A386312F68D82CF86824D3606 cert=PBwr+S8JTVZo6MPdHnkTwXJPILWADLqfMGoVvhZClMq/Urndyd42BwX9YFJHZnBB3H0XCw iat-mode=0',
-    'Bridge obfs4 144.217.20.138:80 FB70B257C162BF1038CA669D568D76F5B7F0BABB cert=vYIV5MgrghGQvZPIi1tJwnzorMgqgmlKaB77Y3Z9Q/v94wZBOAXkW+fdx4aSxLVnKO+xNw iat-mode=0',
-    'Bridge obfs4 193.11.166.194:27015 2D82C2E354D531A68469ADF7F878FA6060C6BACA cert=4TLQPJrTSaDffMK7Nbao6LC7G9OW/NHkUwIdjLSS3KYf0Nv4/nQiiI8dY2TcsQx01NniOg iat-mode=0',
-    'Bridge obfs4 193.11.166.194:27020 86AC7B8D430DAC4117E9F42C9EAED18133863AAF cert=0LDeJH4JzMDtkJJrFphJCiPqKx7loozKN7VNfuukMGfHO0Z8OGdzHVkhVAOfo1mUdv9cMg iat-mode=0',
+    'Bridge obfs4 38.229.1.78:80 C8CBDB2464FC9804A69531437BCF2BE31FDD2EE4 cert=Hmyfd2ev46gGY7NoVxA9ngrPF2zCZtzskRTzoWXbxNkzeVnGFPWmrTtILRyqCTjHR+s9dg iat-mode=1',
+    'Bridge obfs4 37.218.245.14:38224 D9A82D2F9C2F65A18407B1D2B764F130847F8B5D cert=bjRaMrr1BRiAW8IE9U5z27fQaYgOhX1UCmOpg2pFpoMvo6ZgQMzLsaTzzQNTlm7hNcb+Sg iat-mode=0',
+    'Bridge obfs4 192.95.36.142:443 CDF2E852BF539B82BD10E27E9115A31734E378C2 cert=qUVQ0srL1JI/vO6V6m/24anYXiJD3QP2HgzUKQtQ7GRqqUvs7P+tG43RtAqdhLOALP7DJQ iat-mode=1',
+    'Bridge obfs4 38.229.33.83:80 0BAC39417268B96B9F514E7F63FA6FBA1A788955 cert=VwEFpk9F/UN9JED7XpG1XOjm/O8ZCXK80oPecgWnNDZDv5pdkhq1OpbAH0wNqOT6H6BmRQ iat-mode=1',
     'Bridge obfs4 193.11.166.194:27025 1AE2C08904527FEA90C4C4F8C1083EA59FBC6FAF cert=ItvYZzW5tn6v3G4UnQa6Qz04Npro6e81AP70YujmK/KXwDFPTs3aHXcHp4n8Vt6w/bv8cA iat-mode=0',
-    'Bridge obfs4 51.222.13.177:80 5EDAC3B810E12B01F6FD8050D2FD3E277B289A08 cert=2uplIpLQ0q9+0qMFrK5pkaYRDOe460LL9WHBvatgkuRr/SL31wBOEupaMMJ6koRE6Ld0ew iat-mode=0'
+    'Bridge obfs4 85.31.186.26:443 91A6354697E6B02A386312F68D82CF86824D3606 cert=PBwr+S8JTVZo6MPdHnkTwXJPILWADLqfMGoVvhZClMq/Urndyd42BwX9YFJHZnBB3H0XCw iat-mode=0',
+    'Bridge obfs4 193.11.166.194:27015 2D82C2E354D531A68469ADF7F878FA6060C6BACA cert=4TLQPJrTSaDffMK7Nbao6LC7G9OW/NHkUwIdjLSS3KYf0Nv4/nQiiI8dY2TcsQx01NniOg iat-mode=0',
+    'Bridge obfs4 51.222.13.177:80 5EDAC3B810E12B01F6FD8050D2FD3E277B289A08 cert=2uplIpLQ0q9+0qMFrK5pkaYRDOe460LL9WHBvatgkuRr/SL31wBOEupaMMJ6koRE6Ld0ew iat-mode=0',
+    'Bridge obfs4 45.145.95.6:27015 C5B7CD6946FF10C5B3E89691A7D3F2C122D2117C cert=TD7PbUO0/0k6xYHMPW3vJxICfkMZNdkRrb63Zhl5j9dW3iRGiCx0A7mPhe5T2EDzQ35+Zw iat-mode=0',
+    'Bridge obfs4 146.57.248.225:22 10A6CD36A537FCE513A322361547444B393989F0 cert=K1gDtDAIcUfeLqbstggjIw2rtgIKqdIhUlHp82XRqNSq/mtAjp1BIC9vHKJ2FAEpGssTPw iat-mode=0',
+    'Bridge obfs4 209.148.46.65:443 74FAD13168806246602538555B5521A0383A1875 cert=ssH+9rP8dG2NLDN2XuFw63hIO/9MNNinLmxQDpVa+7kTOa9/m+tGWT1SmSYpQ9uTBGa6Hw iat-mode=0',
+    'Bridge obfs4 193.11.166.194:27020 86AC7B8D430DAC4117E9F42C9EAED18133863AAF cert=0LDeJH4JzMDtkJJrFphJCiPqKx7loozKN7VNfuukMGfHO0Z8OGdzHVkhVAOfo1mUdv9cMg iat-mode=0'
     );
+
+  SnowflakeBridges: array[1..1] of string =
+    ('Bridge snowflake 192.0.2.3:1 2B280B23E1107BB62ABFC40DDCC8824814F80A72');
+
+  MeekBridges: array[1..1] of string =
+    ('Bridge meek_lite 192.0.2.2:2 97700DFE9F483596DDA6264C4D7DF7641E1E39CE url=https://meek.azureedge.net/ front=ajax.aspnetcdn.com');
 
 var
   AppPath: string;
 
-function ConfigureTor: boolean;
+function ConfigureTor(bridgeType: integer): boolean;
 function ConfigToral: boolean;
 function ConfigTorav: boolean;
-function GetTorrcBridgeCount: integer;
+function GetTorrcBridgeCount(bridgeType: integer): integer;
 function DeleteBridge(AppPath: string; Bridge: string): boolean;
 function ReadUseBridgesCfg: boolean;
 procedure UseBridges(useBridges: boolean);
+function DeleteAllBridge(AppPath: string): boolean;
 
 implementation
 
-function ConfigureTor: boolean;
+// 0: obfs4
+// 1: snowflake
+// 2: meek
+function ConfigureTor(bridgeType: integer): boolean;
 var
   torrcPath: string;
   torrcFile: TextFile;
@@ -210,7 +214,19 @@ begin
       // have any bridge in torrc?
       for i := 0 to slTorrc.Count - 1 do
       begin
-        if slTorrc[i].StartsWith('Bridge obfs4') then
+        if (bridgeType = 0) and slTorrc[i].StartsWith('Bridge obfs4') then
+        begin
+          haveBridge := True;
+          Break;
+        end;
+
+        if (bridgeType = 1) and slTorrc[i].StartsWith('Bridge snowflake') then
+        begin
+          haveBridge := True;
+          Break;
+        end;
+
+        if (bridgeType = 2) and slTorrc[i].StartsWith('Bridge meek_lite') then
         begin
           haveBridge := True;
           Break;
@@ -221,7 +237,7 @@ begin
       // else write from torav
       if not haveBridge then
       begin
-        if slTorav.Count > 0 then
+        if (bridgeType = 0) and (slTorav.Count > 0) then
         begin
           for i := 0 to slTorav.Count - 1 do
           begin
@@ -231,11 +247,25 @@ begin
             end;
           end;
         end
-        else
+        else if bridgeType = 0 then
         begin
-          for i := 1 to Length(Bridges) do
+          for i := 1 to Length(Obfs4Bridges) do
           begin
-            slTorrc.Add(Bridges[i]);
+            slTorrc.Add(Obfs4Bridges[i]);
+          end;
+        end
+        else if bridgeType = 1 then
+        begin
+          for i := 1 to Length(SnowflakeBridges) do
+          begin
+            slTorrc.Add(SnowflakeBridges[i]);
+          end;
+        end
+        else if bridgeType = 2 then
+        begin
+          for i := 1 to Length(MeekBridges) do
+          begin
+            slTorrc.Add(MeekBridges[i]);
           end;
         end;
       end;
@@ -288,9 +318,27 @@ begin
       {$ENDIF}
 
       WriteLn(torrcFile, '');
-      for i := 1 to Length(Bridges) do
+
+      if bridgeType = 0 then
       begin
-        WriteLn(torrcFile, Bridges[i]);
+        for i := 1 to Length(Obfs4Bridges) do
+        begin
+          WriteLn(torrcFile, Obfs4Bridges[i]);
+        end;
+      end
+      else if bridgeType = 1 then
+      begin
+        for i := 1 to Length(SnowflakeBridges) do
+        begin
+          WriteLn(torrcFile, SnowflakeBridges[i]);
+        end;
+      end
+      else if bridgeType = 2 then
+      begin
+        for i := 1 to Length(MeekBridges) do
+        begin
+          WriteLn(torrcFile, MeekBridges[i]);
+        end;
       end;
 
       CloseFile(torrcFile);
@@ -323,12 +371,12 @@ begin
       slToral := TStringList.Create;
       slToral.LoadFromFile(AppPath + ProjectFilesManager.toralPath);
 
-      for i := 1 to Length(Bridges) do
+      for i := 1 to Length(Obfs4Bridges) do
       begin
         toralHaveBridge := False;
-        if Bridges[i].StartsWith('Bridge obfs4') then
+        if Obfs4Bridges[i].StartsWith('Bridge obfs4') then
         begin
-          if BridgeRegex.Exec(Bridges[i]) then
+          if BridgeRegex.Exec(Obfs4Bridges[i]) then
           begin
             BridgeIp := BridgeRegex.Match[0];
 
@@ -351,7 +399,7 @@ begin
 
             if not toralHaveBridge then
             begin
-              slToral.Add(Bridges[i]);
+              slToral.Add(Obfs4Bridges[i]);
             end;
           end;
         end;
@@ -378,9 +426,9 @@ begin
       // Create the file, write some text and close it.
       Rewrite(toralFile);
 
-      for i := 1 to Length(Bridges) do
+      for i := 1 to Length(Obfs4Bridges) do
       begin
-        WriteLn(toralFile, Bridges[i]);
+        WriteLn(toralFile, Obfs4Bridges[i]);
       end;
 
       CloseFile(toralFile);
@@ -423,7 +471,7 @@ begin
 
 end;
 
-function GetTorrcBridgeCount: integer;
+function GetTorrcBridgeCount(bridgeType: integer): integer;
 var
   torrcPath: string;
   slTorrc: TStringList;
@@ -440,10 +488,29 @@ begin
     try
       slTorrc.LoadFromFile(torrcPath);
 
-      for i := 0 to slTorrc.Count - 1 do
+      if bridgeType = 0 then
       begin
-        if slTorrc[i].StartsWith('Bridge obfs4') then
-          Inc(torrcBridgeCount);
+        for i := 0 to slTorrc.Count - 1 do
+        begin
+          if slTorrc[i].StartsWith('Bridge obfs4') then
+            Inc(torrcBridgeCount);
+        end;
+      end
+      else if bridgeType = 1 then
+      begin
+        for i := 0 to slTorrc.Count - 1 do
+        begin
+          if slTorrc[i].StartsWith('Bridge snowflake') then
+            Inc(torrcBridgeCount);
+        end;
+      end
+      else if bridgeType = 2 then
+      begin
+        for i := 0 to slTorrc.Count - 1 do
+        begin
+          if slTorrc[i].StartsWith('Bridge meek_lite') then
+            Inc(torrcBridgeCount);
+        end;
       end;
 
       Result := torrcBridgeCount;
@@ -559,6 +626,43 @@ begin
       slTorrc.Free;
     except
     end;
+  end;
+end;
+
+function DeleteAllBridge(AppPath: string): boolean;
+var
+  torrcPath: string;
+  slTorrc: TStringList;
+  i: integer;
+begin
+  torrcPath := AppPath + ProjectFilesManager.torrcPath;
+
+  if FileExists(torrcPath) then
+  begin
+    slTorrc := TStringList.Create;
+    try
+      slTorrc.LoadFromFile(torrcPath);
+      for i := slTorrc.Count - 1 downto 0 do
+      begin
+        if slTorrc[i].StartsWith('Bridge ') then
+        begin
+          slTorrc.Delete(i);
+        end;
+      end;
+
+      slTorrc.SaveToFile(torrcPath);
+      Result := True;
+    except
+      on E: EInOutError do
+      begin
+        Result := False;
+      end;
+    end;
+    slTorrc.Free;
+  end
+  else
+  begin
+    Result := False;
   end;
 end;
 
