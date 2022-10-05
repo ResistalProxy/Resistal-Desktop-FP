@@ -102,12 +102,14 @@ type
     BtnSetSocksTelegram: TButton;
     BtnSetSystemProxy: TButton;
     ChkBxUseBridges: TCheckBox;
+    CmbBxSelectBridge: TComboBox;
     Edit1: TEdit;
     Edit2: TEdit;
     Edit3: TEdit;
     Edit4: TEdit;
     Edit5: TEdit;
     Edit6: TEdit;
+    GroupBox4: TGroupBox;
     TxtTorVersion: TEdit;
     Edit8: TEdit;
     GroupBox1: TGroupBox;
@@ -152,6 +154,7 @@ type
     procedure BtnSetSocksTelegramClick(Sender: TObject);
     procedure BtnSetSystemProxyClick(Sender: TObject);
     procedure ChkBxUseBridgesChange(Sender: TObject);
+    procedure CmbBxSelectBridgeChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormWindowStateChange(Sender: TObject);
     procedure IdHttpCheckUpdateWork(ASender: TObject; AWorkMode: TWorkMode;
@@ -212,6 +215,7 @@ begin
   Ini := TIniFile.Create(ChangeFileExt(Application.ExeName, '.ini'));
   try
     FrmMain.MenuItemAutoConnect.Checked := Ini.ReadBool('App', 'AutoConnect', False);
+    FrmMain.CmbBxSelectBridge.ItemIndex := Ini.ReadInteger('App', 'SelectBridge', 1);
   finally
     Ini.Free;
   end;
@@ -230,7 +234,8 @@ begin
 
     RemoveProxy();
 
-    if tor.ConfigureTor and tor.ConfigToral and tor.ConfigTorav then
+    if tor.ConfigureTor(CmbBxSelectBridge.ItemIndex) and tor.ConfigToral and
+      tor.ConfigTorav then
     begin
       ChkBxUseBridges.Checked := tor.ReadUseBridgesCfg;
 
@@ -875,6 +880,7 @@ begin
               if intPct >= 1 then
               begin
                 FrmMain.ChkBxUseBridges.Enabled := True;
+                FrmMain.CmbBxSelectBridge.Enabled := True;
               end;
 
               if intPct = 100 then
@@ -884,6 +890,7 @@ begin
 
                 FrmMain.BtnSetSystemProxy.Enabled := True;
                 FrmMain.ChkBxUseBridges.Enabled := True;
+                FrmMain.CmbBxSelectBridge.Enabled := True;
 
                 if TorProcess.Running then
                 begin
@@ -919,7 +926,8 @@ begin
             end;
           end;
         end
-        else if AnsiContainsStr(StrArray[index], '[warn]') then
+        else if AnsiContainsStr(StrArray[index], '[warn]') and
+          (FrmMain.CmbBxSelectBridge.ItemIndex = 0) then
         begin
           if AnsiContainsStr(StrArray[index], 'Proxy Client: unable to connect to') and
             AnsiContainsStr(StrArray[index], '("general SOCKS server failure")') and
@@ -936,12 +944,12 @@ begin
               if (FrmMain.ProgressBar1.Position = 100) and
                 useRoutingTable.IsInternetAvailable() then
               begin
-
-                // Delete Bridge in torrc
+                // Delete obfs4 bridge in torrc
                 tor.DeleteBridge(AppPath, strBridge);
               end
               else
               begin
+                // obfs4 bridge
                 tor.DeleteBridge(AppPath, strBridge);
 
                 // restart tor
@@ -992,9 +1000,9 @@ begin
 
   Sleep(1000);
 
-  if tor.GetTorrcBridgeCount = 0 then
+  if tor.GetTorrcBridgeCount(FrmMain.CmbBxSelectBridge.ItemIndex) = 0 then
   begin
-    tor.ConfigureTor;
+    tor.ConfigureTor(FrmMain.CmbBxSelectBridge.ItemIndex);
     FrmMain.ThreadCheckUpdate.UpdateBridge;
   end;
 
@@ -1090,9 +1098,9 @@ procedure TFrmMain.BtnConnectClick(Sender: TObject);
 begin
   if BtnConnect.Caption = 'Connect' then
   begin
-    if tor.GetTorrcBridgeCount = 0 then
+    if tor.GetTorrcBridgeCount(CmbBxSelectBridge.ItemIndex) = 0 then
     begin
-      tor.ConfigureTor;
+      tor.ConfigureTor(CmbBxSelectBridge.ItemIndex);
       ThreadCheckUpdate := TThreadCheckUpdate.Create(True);
       ThreadCheckUpdate.Start;
     end;
@@ -1102,6 +1110,7 @@ begin
     BtnConnect.Enabled := False;
     LblStatus.Caption := 'Initializing';
     ChkBxUseBridges.Enabled := False;
+    CmbBxSelectBridge.Enabled := False;
   end
   else if BtnConnect.Caption = 'Disconnect' then
   begin
@@ -1161,6 +1170,21 @@ end;
 procedure TFrmMain.ChkBxUseBridgesChange(Sender: TObject);
 begin
   tor.UseBridges(ChkBxUseBridges.Checked);
+end;
+
+procedure TFrmMain.CmbBxSelectBridgeChange(Sender: TObject);
+var
+  Ini: TIniFile;
+begin
+  tor.DeleteAllBridge(AppPath);
+  tor.ConfigureTor(CmbBxSelectBridge.ItemIndex);
+
+  Ini := TIniFile.Create(ChangeFileExt(Application.ExeName, '.ini'));
+  try
+    Ini.WriteInteger('App', 'SelectBridge', FrmMain.CmbBxSelectBridge.ItemIndex);
+  finally
+    Ini.Free;
+  end;
 end;
 
 procedure StartingBrowser;
