@@ -881,12 +881,12 @@ begin
               begin
                 FrmMain.ChkBxUseBridges.Enabled := True;
                 FrmMain.CmbBxSelectBridge.Enabled := True;
+                FrmMain.BtnConnect.Enabled := True;
               end;
 
               if intPct = 100 then
               begin
                 FrmMain.BtnConnect.Caption := 'Disconnect';
-                FrmMain.BtnConnect.Enabled := True;
 
                 FrmMain.BtnSetSystemProxy.Enabled := True;
                 FrmMain.ChkBxUseBridges.Enabled := True;
@@ -1107,12 +1107,13 @@ begin
 
     ThreadTor := TThreadTor.Create(True);
     ThreadTor.Start;
+    BtnConnect.Caption := 'Connecting';
     BtnConnect.Enabled := False;
     LblStatus.Caption := 'Initializing';
     ChkBxUseBridges.Enabled := False;
     CmbBxSelectBridge.Enabled := False;
   end
-  else if BtnConnect.Caption = 'Disconnect' then
+  else if (BtnConnect.Caption = 'Disconnect') or (BtnConnect.Caption = 'Connecting') then
   begin
     ThreadTor.Terminate;
 
