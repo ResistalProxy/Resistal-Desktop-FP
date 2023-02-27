@@ -234,13 +234,21 @@ begin
 
     RemoveProxy();
 
-    if tor.ConfigureTor(CmbBxSelectBridge.ItemIndex) and tor.ConfigToral and
-      tor.ConfigTorav then
+    if tor.ConfigToral and tor.ConfigTorav then
     begin
-      ChkBxUseBridges.Checked := tor.ReadUseBridgesCfg;
+      if tor.ConfigureTor(CmbBxSelectBridge.ItemIndex) then
+      begin
+        ChkBxUseBridges.Checked := tor.ReadUseBridgesCfg;
 
-      ThreadInternet := TThreadInternet.Create(True);
-      ThreadInternet.Start;
+        ThreadInternet := TThreadInternet.Create(True);
+        ThreadInternet.Start;
+      end
+      else
+      begin
+        Application.MessageBox('Tor Config Error.' + sLineBreak +
+          'Resistal will be closed.', 'Error', MB_OK or MB_ICONERROR);
+        Application.Terminate;
+      end;
     end
     else
     begin
@@ -460,9 +468,12 @@ begin
     IsUpdateBridge := True;
     Sleep(1000);
 
-    // Run Telnet Thread
-    FrmMain.ThreadTelnetBridge := TThreadTelnetBridge.Create(True);
-    FrmMain.ThreadTelnetBridge.Start;
+    // Run Telnet Thread (obfs4)
+    if FrmMain.CmbBxSelectBridge.ItemIndex = 0 then
+    begin
+      FrmMain.ThreadTelnetBridge := TThreadTelnetBridge.Create(True);
+      FrmMain.ThreadTelnetBridge.Start;
+    end;
   end;
 end;
 
