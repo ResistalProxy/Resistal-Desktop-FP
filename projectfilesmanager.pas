@@ -20,7 +20,7 @@ const
     'Tor\Tor\PluggableTransports'
     );
 
-  Files: array[1..20] of string =
+  Files: array[1..11] of string =
     (
     'Resistal.exe',
     'libeay32.dll',
@@ -35,16 +35,7 @@ const
     'Tor\Data\Tor\geoip6',
     'Tor\Tor\PluggableTransports\obfs4proxy.exe',
     'Tor\Tor\PluggableTransports\snowflake-client.exe',
-    'Tor\Tor\libcrypto-1_1.dll',
-    'Tor\Tor\libevent_core-2-1-7.dll',
-    'Tor\Tor\libevent_extra-2-1-7.dll',
-    'Tor\Tor\libevent-2-1-7.dll',
-    'Tor\Tor\libgcc_s_dw2-1.dll',
-    'Tor\Tor\libssl-1_1.dll',
-    'Tor\Tor\libssp-0.dll',
-    'Tor\Tor\libwinpthread-1.dll',
-    'Tor\Tor\tor.exe',
-    'Tor\Tor\zlib1.dll'
+    'Tor\Tor\tor.exe'
     );
 
   TorPath: string = 'Tor';
@@ -57,7 +48,7 @@ const
   Aria2cPath: string = 'Bin\aria2c.exe';
   toralPath: string = 'Tor\Data\Tor\toral';
   toravPath: string = 'Tor\Data\Tor\torav';
-  TorVersion: string = '0.4.7.10';
+  TorVersion: string = '0.4.7.13';
 
 var
   AppPath: string;
